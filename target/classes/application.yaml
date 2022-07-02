@@ -1,4 +1,21 @@
 spring.application.name: spring-vault-demo
+spring.cloud.vault:
+  authentication: TOKEN
+  token: hvs.9PlppaNwkNRhQyaDgOXJ0A0Y
+  host: localhost
+  port: 8200
+  scheme: http
+  fail-fast: true
+  config.lifecycle.enabled: true
+  generic:
+    enabled: true
+    backend: secret
+  database:
+    enabled: true
+    role: order
+    backend: database
+#spring.datasource:
+#  url: jdbc:postgresql://192.168.235.128:5432/postgres
 # Spring Boot configuration
 spring:
   profiles:
@@ -6,6 +23,7 @@ spring:
 # Database
   datasource:
     driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://192.168.235.128:5432/postgres
     username: postgres
     password: 11111
   # JPA properties
@@ -42,20 +60,3 @@ server:
   sessionTimeout: 30
 
 
-spring.cloud.vault:
-  authentication: TOKEN
-  token: hvs.9PlppaNwkNRhQyaDgOXJ0A0Y
-  host: 192.168.235.128
-  port: 8200
-  scheme: http
-  fail-fast: true
-  config.lifecycle.enabled: true
-  generic:
-    enabled: true
-    backend: secret
-  database:
-    enabled: true
-    role: order
-    backend: database
-spring.datasource:
-  url: jdbc:postgresql://192.168.235.128:5432/postgres
