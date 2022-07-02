@@ -1,0 +1,61 @@
+spring.application.name: spring-vault-demo
+# Spring Boot configuration
+spring:
+  profiles:
+    active: development
+# Database
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: 11111
+  # JPA properties
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+    generate-ddl: false
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false 
+    
+# Logger configuration
+logging:
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+  level:
+    org.springframework: INFO
+    org.hibernate: INFO
+# Server configuration
+management:
+  endpoints:
+    web:
+      expose: ["health", "info", "refresh", "env"]
+  endpoint:
+    health:
+      show-details: NEVER
+server:
+  port: 8080
+  sessionTimeout: 30
+
+
+spring.cloud.vault:
+  authentication: TOKEN
+  token: hvs.9PlppaNwkNRhQyaDgOXJ0A0Y
+  host: 192.168.235.128
+  port: 8200
+  scheme: http
+  fail-fast: true
+  config.lifecycle.enabled: true
+  generic:
+    enabled: true
+    backend: secret
+  database:
+    enabled: true
+    role: order
+    backend: database
+spring.datasource:
+  url: jdbc:postgresql://192.168.235.128:5432/postgres
